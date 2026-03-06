@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Classifier · Sales Pitch Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --g:  #0FFFA3;
+  --g2: #00C97A;
+  --y:  #FFD166;
+  --y2: #F5A800;
+  --r:  #FF6B8A;
+  --r2: #D93655;
+  --bg:    #07090E;
+  --s1:    #0C0F18;
+  --s2:    #111520;
+  --s3:    #171C2B;
+  --s4:    #1C2235;
+  --border: rgba(255,255,255,0.06);
+  --border2:rgba(255,255,255,0.11);
+  --text:  #E8ECF6;
+  --sub:   #6E7A94;
+  --sub2:  #9BA5BC;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Plus Jakarta Sans', sans-serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TOPBAR */
+.topbar {
+  height: 56px;
+  min-height: 56px;
+  background: var(--s1);
+  border-bottom: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  position: relative;
+  z-index: 100;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; margin-right: 20px; }
+
+.brand-icon {
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--g), #00B4FF);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 12px; color: #000; letter-spacing: -0.5px;
+}
+
+.brand-name { font-size: 14px; font-weight: 700; letter-spacing: -0.3px; }
+
+.topbar-divider { width: 1px; height: 18px; background: var(--border2); margin: 0 16px; }
+
+.topbar-sub { font-size: 12px; color: var(--sub); font-family: var(--mono); }
+
+.topbar-tabs { display: flex; gap: 2px; margin-left: 28px; }
+
+.topbar-tab {
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--sub);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+
+.topbar-tab:hover { background: var(--s3); color: var(--text); }
+.topbar-tab.active { background: var(--s3); color: var(--text); }
+
+.topbar-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+
+.status-dot {
+  width: 7px; height: 7px;
+  background: var(--g);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--g);
+  animation: blink 2s infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+.status-text { font-size: 11.5px; color: var(--sub2); font-family: var(--mono); }
+
+/* MAIN APP */
+.app {
+  display: grid;
+  grid-template-columns: 370px 1fr;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* LEFT FORM PANEL */
+.form-panel {
+  background: var(--s1);
+  border-right: 1px solid var(--border2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.form-header {
+  padding: 20px 22px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.form-header h2 { font-size: 15px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 3px; }
+.form-header p { font-size: 12px; color: var(--sub); line-height: 1.5; }
+
+.form-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px 22px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--s4) transparent;
+}
+
+.core-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  background: rgba(15,255,163,0.04);
+  border: 1px solid rgba(15,255,163,0.15);
+  border-radius: 10px;
+  padding: 11px 13px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: rgba(15,255,163,0.8);
+  line-height: 1.6;
+}
+
+.form-sep {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 14px;
+}
+
+.form-sep-line { flex: 1; height: 1px; background: var(--border); }
+
+.form-sep-label {
+  font-size: 10px;
+  font-family: var(--mono);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--sub);
+  white-space: nowrap;
+}
+
+.field { margin-bottom: 13px; }
+
+.field label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--sub2);
+  margin-bottom: 6px;
+  letter-spacing: 0.2px;
+}
+
+.core-badge {
+  background: rgba(15,255,163,0.12);
+  color: var(--g);
+  font-size: 9px;
+  letter-spacing: 0.8px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.ctx-badge {
+  background: rgba(110,122,148,0.15);
+  color: var(--sub);
+  font-size: 9px;
+  letter-spacing: 0.8px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.field input, .field select {
+  width: 100%;
+  background: var(--s3);
+  border: 1px solid var(--border2);
+  border-radius: 9px;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 10px 13px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%236E7A94' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 34px;
+  cursor: pointer;
+}
+
+.field select option, .field select optgroup { background: #111520; color: var(--text); }
+
+.field input:focus, .field select:focus {
+  border-color: rgba(15,255,163,0.4);
+  background: var(--s4);
+  box-shadow: 0 0 0 3px rgba(15,255,163,0.06);
+}
+
+.field input::placeholder { color: #2E3650; }
+
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.form-footer {
+  padding: 14px 22px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+}
+
+.btn-analyze {
+  flex: 1;
+  background: var(--g);
+  color: #02100A;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 20px;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  letter-spacing: -0.2px;
+}
+
+.btn-analyze:hover {
+  background: #3FFFB8;
+  box-shadow: 0 4px 20px rgba(15,255,163,0.25);
+  transform: translateY(-1px);
+}
+
+.btn-analyze:active { transform: translateY(0); }
+
+.btn-reset {
+  background: var(--s3);
+  color: var(--sub2);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 11px 16px;
+  font-family: var(--sans);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-reset:hover { background: var(--s4); color: var(--text); }
+
+/* RIGHT RESULTS */
+.results-panel {
+  background: var(--bg);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: var(--s4) transparent;
+}
+
+.empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--sub);
+  padding: 40px;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 60px; height: 60px;
+  background: var(--s2);
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  border: 1px solid var(--border2);
+  margin-bottom: 4px;
+}
+
+.empty-state h3 { font-size: 15px; font-weight: 600; color: var(--sub2); }
+.empty-state p { font-size: 12.5px; max-width: 260px; line-height: 1.6; }
+
+.results-wrap {
+  display: none;
+  flex-direction: column;
+  padding: 22px;
+  gap: 16px;
+  animation: fadeUp 0.35s ease;
+}
+
+.results-wrap.show { display: flex; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* CATEGORY BANNER */
+.cat-banner {
+  border-radius: 14px;
+  padding: 20px 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cat-banner::after {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 150px; height: 150px;
+  border-radius: 50%;
+  opacity: 0.06;
+}
+
+.cat-banner.green { background: linear-gradient(135deg, rgba(15,255,163,0.07), rgba(15,255,163,0.02)); border: 1px solid rgba(15,255,163,0.2); }
+.cat-banner.green::after { background: var(--g); }
+.cat-banner.yellow { background: linear-gradient(135deg, rgba(255,209,102,0.07), rgba(255,209,102,0.02)); border: 1px solid rgba(255,209,102,0.2); }
+.cat-banner.yellow::after { background: var(--y); }
+.cat-banner.red { background: linear-gradient(135deg, rgba(255,107,138,0.07), rgba(255,107,138,0.02)); border: 1px solid rgba(255,107,138,0.2); }
+.cat-banner.red::after { background: var(--r); }
+
+.cat-top-row { display: flex; align-items: center; gap: 11px; margin-bottom: 9px; }
+
+.cat-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+.green .cat-dot { background: var(--g); box-shadow: 0 0 8px rgba(15,255,163,0.8); }
+.yellow .cat-dot { background: var(--y); box-shadow: 0 0 8px rgba(255,209,102,0.8); }
+.red .cat-dot { background: var(--r); box-shadow: 0 0 8px rgba(255,107,138,0.8); }
+
+.cat-name { font-size: 19px; font-weight: 800; letter-spacing: -0.4px; }
+.green .cat-name { color: var(--g); }
+.yellow .cat-name { color: var(--y); }
+.red .cat-name { color: var(--r); }
+
+.cat-priority {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.green .cat-priority  { background: rgba(15,255,163,0.1); color: var(--g);  border: 1px solid rgba(15,255,163,0.2); }
+.yellow .cat-priority { background: rgba(255,209,102,0.1);color: var(--y);  border: 1px solid rgba(255,209,102,0.2); }
+.red .cat-priority    { background: rgba(255,107,138,0.1);color: var(--r);  border: 1px solid rgba(255,107,138,0.2); }
+
+.cat-verdict { font-size: 13px; color: var(--sub2); line-height: 1.65; margin-bottom: 13px; }
+
+.chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.chip { font-size: 11px; font-family: var(--mono); padding: 3px 9px; border-radius: 20px; }
+.chip.pos { background: rgba(15,255,163,0.08); color: var(--g); border: 1px solid rgba(15,255,163,0.2); }
+.chip.neg { background: rgba(255,107,138,0.08); color: var(--r); border: 1px solid rgba(255,107,138,0.2); }
+.chip.neu { background: rgba(255,209,102,0.08); color: var(--y); border: 1px solid rgba(255,209,102,0.2); }
+.chip.ctx { background: rgba(110,122,148,0.1); color: var(--sub2); border: 1px solid rgba(110,122,148,0.2); }
+
+/* STATS */
+.stats-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+
+.stat-card {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.stat-label { font-size: 10px; font-family: var(--mono); letter-spacing: 1.5px; text-transform: uppercase; color: var(--sub); margin-bottom: 7px; }
+.stat-val   { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; line-height: 1; margin-bottom: 4px; }
+.stat-sub   { font-size: 11.5px; color: var(--sub); }
+
+/* SCORE + PRICING ROW */
+.meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.score-card {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.score-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.score-label { font-size: 10px; font-family: var(--mono); letter-spacing: 1.5px; text-transform: uppercase; color: var(--sub); }
+.score-num  { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+
+.score-track { height: 5px; background: var(--s3); border-radius: 10px; overflow: hidden; }
+.score-fill  { height: 100%; border-radius: 10px; transition: width 0.9s cubic-bezier(0.4,0,0.2,1); }
+
+.pricing-card {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.pricing-amount { font-size: 22px; font-weight: 800; letter-spacing: -0.8px; margin: 6px 0 4px; }
+.pricing-sub    { font-size: 11.5px; color: var(--sub); line-height: 1.5; }
+
+/* SECTION BLOCK */
+.sblock {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 13px;
+  overflow: hidden;
+}
+
+.sblock-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 17px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sblock-icon {
+  width: 26px; height: 26px;
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.sblock-title { font-size: 13px; font-weight: 700; }
+.sblock-meta  { font-size: 11px; color: var(--sub); margin-left: auto; font-family: var(--mono); }
+
+/* SERVICES */
+.svc-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 17px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+}
+.svc-row:last-child { border-bottom: none; }
+.svc-row:hover { background: var(--s2); }
+
+.svc-emoji { font-size: 15px; width: 26px; text-align: center; flex-shrink: 0; }
+.svc-info strong { font-size: 13px; font-weight: 600; display: block; }
+.svc-info span   { font-size: 11.5px; color: var(--sub); }
+
+.svc-badge {
+  margin-left: auto;
+  font-size: 10px;
+  font-family: var(--mono);
+  letter-spacing: 0.6px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+.svc-badge.rec  { background: rgba(15,255,163,0.1);  color: var(--g);  border: 1px solid rgba(15,255,163,0.25); }
+.svc-badge.cau  { background: rgba(255,209,102,0.1); color: var(--y);  border: 1px solid rgba(255,209,102,0.25); }
+.svc-badge.skip { background: rgba(110,122,148,0.06);color: var(--sub);border: 1px solid var(--border); opacity: 0.55; }
+
+/* OPENER */
+.opener-wrap { padding: 14px 17px 17px; }
+
+.opener-box {
+  background: var(--s2);
+  border: 1px solid var(--border2);
+  border-left: 3px solid var(--sub);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--sub2);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* TIPS */
+.tip-row {
+  display: flex;
+  gap: 12px;
+  padding: 12px 17px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+}
+.tip-row:last-child { border-bottom: none; }
+.tip-row:hover { background: var(--s2); }
+
+.tip-num {
+  width: 21px; height: 21px;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; font-family: var(--mono);
+  flex-shrink: 0; margin-top: 1px;
+}
+.tip-num.green  { background: rgba(15,255,163,0.12); color: var(--g); }
+.tip-num.yellow { background: rgba(255,209,102,0.12);color: var(--y); }
+.tip-num.red    { background: rgba(255,107,138,0.1); color: var(--r); }
+
+.tip-row strong { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.tip-row p      { font-size: 12px; color: var(--sub2); line-height: 1.6; }
+
+/* DO DON'T */
+.dodonts-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.dd-do  { border-right: 1px solid var(--border); }
+
+.dd-col-head {
+  padding: 9px 16px;
+  font-size: 10px;
+  font-family: var(--mono);
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+.dd-do  .dd-col-head { color: var(--g); }
+.dd-dont .dd-col-head { color: var(--r); }
+
+.dd-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--sub2);
+  line-height: 1.55;
+  transition: background 0.12s;
+}
+.dd-item:last-child { border-bottom: none; }
+.dd-item:hover { background: var(--s2); }
+.dd-item::before { flex-shrink: 0; font-size: 11px; margin-top: 1px; font-weight: 600; }
+.dd-do   .dd-item::before { content: '✓'; color: var(--g); }
+.dd-dont .dd-item::before { content: '✕'; color: var(--r); }
+
+/* REFERENCE TAB */
+.ref-panel {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--s4) transparent;
+}
+
+.ref-card {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 13px;
+  overflow: hidden;
+}
+
+.ref-card-head {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border2);
+  background: var(--s2);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--mono);
+  letter-spacing: 0.5px;
+  color: var(--sub2);
+}
+
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+thead th {
+  padding: 11px 16px;
+  text-align: left;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--sub);
+  border-bottom: 1px solid var(--border2);
+  background: var(--s2);
+}
+tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--sub2);
+  line-height: 1.5;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: var(--s2); }
+
+.pill {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--mono);
+}
+.pill.g { background: rgba(15,255,163,0.1); color: var(--g); border: 1px solid rgba(15,255,163,0.25); }
+.pill.y { background: rgba(255,209,102,0.1);color: var(--y); border: 1px solid rgba(255,209,102,0.25); }
+.pill.r { background: rgba(255,107,138,0.1);color: var(--r); border: 1px solid rgba(255,107,138,0.25); }
+
+.ctx-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; padding: 16px; }
+.ctx-item h4 { font-size: 12.5px; font-weight: 700; margin-bottom: 5px; }
+.ctx-item p  { font-size: 11.5px; color: var(--sub); line-height: 1.6; }
+
+/* SCROLLBARS */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--s4); border-radius: 10px; }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-icon">GL</div>
+    <span class="brand-name">LeadGuide</span>
+  </div>
+  <div class="topbar-divider"></div>
+  <span class="topbar-sub">Placement Classifier</span>
+  <div class="topbar-tabs">
+    <div class="topbar-tab active" onclick="setTab('assess',this)">🎯 Assess</div>
+    <div class="topbar-tab" onclick="setTab('ref',this)">📋 Reference</div>
+  </div>
+  <div class="topbar-right">
+    <div class="status-dot"></div>
+    <span class="status-text">Agent Tool · Internal</span>
+  </div>
+</div>
+
+<!-- ASSESS TAB -->
+<div class="app" id="pane-assess">
+
+  <!-- LEFT FORM -->
+  <div class="form-panel">
+    <div class="form-header">
+      <h2>Customer Profile</h2>
+      <p>Fill in the details to classify this lead and get pitch guidance.</p>
+    </div>
+
+    <div class="form-scroll">
+
+      <div class="core-notice">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div>Category is calculated from <strong>Exp + CTC + Designation</strong> only. College &amp; Company are shown as profile context.</div>
+      </div>
+
+      <div class="form-sep">
+        <div class="form-sep-line"></div>
+        <div class="form-sep-label">Core Parameters</div>
+        <div class="form-sep-line"></div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Exp (Years) <span class="core-badge">CORE</span></label>
+          <input type="number" id="exp" placeholder="e.g. 4" min="0" max="40" />
+        </div>
+        <div class="field">
+          <label>CTC (LPA) <span class="core-badge">CORE</span></label>
+          <input type="number" id="ctc" placeholder="e.g. 12" min="0" max="200" step="0.5" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Current Designation <span class="core-badge">CORE</span></label>
+        <select id="designation">
+          <option value="">— Select Designation —</option>
+          <optgroup label="✦ Product Management (Green eligible)">
+            <option value="pm_green">Product Manager (PM)</option>
+            <option value="pm_green">Associate Product Manager (APM)</option>
+            <option value="pm_green">Senior Product Manager (SPM)</option>
+            <option value="pm_green">Technical Product Manager (TPM)</option>
+            <option value="pm_green">Group Product Manager (GPM)</option>
+            <option value="pm_green">Director of Product</option>
+            <option value="pm_green">VP of Product</option>
+            <option value="pm_green">Chief Product Officer (CPO)</option>
+          </optgroup>
+          <optgroup label="Engineering">
+            <option value="other">Software Engineer / SDE</option>
+            <option value="other">Senior Software Engineer</option>
+            <option value="other">Staff / Principal Engineer</option>
+            <option value="other">Engineering Manager</option>
+            <option value="other">VP Engineering / CTO</option>
+          </optgroup>
+          <optgroup label="Data & Analytics">
+            <option value="other">Data Analyst</option>
+            <option value="other">Data Scientist</option>
+            <option value="other">Business Analyst</option>
+            <option value="other">Analytics Manager</option>
+          </optgroup>
+          <optgroup label="Design">
+            <option value="other">UI/UX Designer</option>
+            <option value="other">Product Designer</option>
+            <option value="other">Design Lead / Head of Design</option>
+          </optgroup>
+          <optgroup label="Management & Strategy">
+            <option value="other">Project Manager</option>
+            <option value="other">Program Manager</option>
+            <option value="other">Strategy / Management Consultant</option>
+          </optgroup>
+          <optgroup label="Sales & Marketing">
+            <option value="other">Sales Executive / Manager</option>
+            <option value="other">Marketing / Growth Manager</option>
+          </optgroup>
+          <optgroup label="Other">
+            <option value="other">Founder / Co-Founder</option>
+            <option value="other">Operations Manager</option>
+            <option value="other">Fresher / Student</option>
+            <option value="other">Other</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="form-sep">
+        <div class="form-sep-line"></div>
+        <div class="form-sep-label">Profile Context</div>
+        <div class="form-sep-line"></div>
+      </div>
+
+      <div class="field">
+        <label>College Tier <span class="ctx-badge">CONTEXT</span></label>
+        <select id="collegeTier">
+          <option value="">— Select College Tier —</option>
+          <option value="1">Tier 1 — IIT / IIM / NIT Top / BITS</option>
+          <option value="2">Tier 2 — State Engg / Mid-level MBA</option>
+          <option value="3">Tier 3 — Other Colleges</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Current Company <span class="ctx-badge">CONTEXT</span></label>
+        <select id="companyType">
+          <option value="">— Select Company Type —</option>
+          <option value="product1">Product – Tier 1 (FAANG / Unicorn)</option>
+          <option value="product2">Product – Tier 2 (Mid-stage / MNC)</option>
+          <option value="service1">Service – Tier 1 (TCS / Infosys / Wipro)</option>
+          <option value="service2">Service – Tier 2 (Smaller IT firms)</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="form-footer">
+      <button class="btn-analyze" onclick="analyze()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Analyze Customer
+      </button>
+      <button class="btn-reset" onclick="resetForm()">Reset</button>
+    </div>
+  </div>
+
+  <!-- RIGHT RESULTS -->
+  <div class="results-panel">
+
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">🎯</div>
+      <h3>No profile analyzed yet</h3>
+      <p>Enter customer details on the left and click Analyze to see category, pricing and pitch recommendations.</p>
+    </div>
+
+    <div class="results-wrap" id="resultsWrap">
+
+      <!-- CAT BANNER -->
+      <div class="cat-banner" id="catBanner">
+        <div class="cat-top-row">
+          <div class="cat-dot"></div>
+          <div class="cat-name" id="catName">—</div>
+          <div class="cat-priority" id="catPriority">—</div>
+        </div>
+        <p class="cat-verdict" id="catVerdict">—</p>
+        <div class="chip-row" id="chipRow"></div>
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Experience</div>
+          <div class="stat-val" id="sExp">—</div>
+          <div class="stat-sub" id="sExpSub">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Current CTC</div>
+          <div class="stat-val" id="sCtc">—</div>
+          <div class="stat-sub" id="sCtcSub">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Designation</div>
+          <div class="stat-val" style="font-size:14px;line-height:1.3;margin-bottom:5px" id="sDesig">—</div>
+          <div class="stat-sub" id="sDesigSub">—</div>
+        </div>
+      </div>
+
+      <!-- SCORE + PRICING -->
+      <div class="meta-row">
+        <div class="score-card">
+          <div class="score-top">
+            <span class="score-label">Prospect Score</span>
+            <span class="score-num" id="scoreNum">—</span>
+          </div>
+          <div class="score-track">
+            <div class="score-fill" id="scoreBar" style="width:0%"></div>
+          </div>
+        </div>
+        <div class="pricing-card">
+          <div class="stat-label">Recommended Pricing</div>
+          <div class="pricing-amount" id="priceVal">—</div>
+          <div class="pricing-sub" id="priceSub">—</div>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="sblock">
+        <div class="sblock-head">
+          <div class="sblock-icon" id="svcIcon">📋</div>
+          <span class="sblock-title">What to Pitch</span>
+          <span class="sblock-meta">Services Guide</span>
+        </div>
+        <div id="serviceList"></div>
+      </div>
+
+
+
+      <!-- TIPS -->
+      <div class="sblock">
+        <div class="sblock-head">
+          <div class="sblock-icon" id="tipsIcon">💡</div>
+          <span class="sblock-title">Conversion Tips</span>
+          <span class="sblock-meta">5 tactics for this profile</span>
+        </div>
+        <div id="tipsList"></div>
+      </div>
+
+      <!-- DO DON'T -->
+      <div class="sblock">
+        <div class="sblock-head">
+          <div class="sblock-icon">⚡</div>
+          <span class="sblock-title">Do's &amp; Don'ts</span>
+          <span class="sblock-meta">Quick agent checklist</span>
+        </div>
+        <div class="dodonts-grid" id="doDont"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- REFERENCE TAB -->
+<div style="display:none;flex:1;overflow:hidden" id="pane-ref">
+  <div class="ref-panel">
+
+    <div class="ref-card">
+      <div class="ref-card-head">CATEGORY MATRIX — EXP + CTC + DESIGNATION RULES</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Experience</th>
+            <th>CTC (LPA)</th>
+            <th>Designation Rule</th>
+            <th>Services</th>
+            <th>Pricing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="pill g">🟢 Green</span></td>
+            <td>0–3 yrs</td>
+            <td>Below 23L</td>
+            <td>PM / APM / TPM role only</td>
+            <td>Upskilling, Placement & Referrals, Community, Mocks, Resume</td>
+            <td style="color:var(--g);font-weight:700;white-space:nowrap">₹1.10 L+</td>
+          </tr>
+          <tr>
+            <td><span class="pill g">🟢 Green</span></td>
+            <td>3–5 yrs</td>
+            <td>Below 27L</td>
+            <td>PM / APM / TPM role only</td>
+            <td>Upskilling, Placement & Referrals, Community, Mocks, Resume</td>
+            <td style="color:var(--g);font-weight:700;white-space:nowrap">₹1.10 L+</td>
+          </tr>
+          <tr>
+            <td><span class="pill y">🟡 Yellow</span></td>
+            <td>0–3 yrs</td>
+            <td>23L and above</td>
+            <td>PM / APM / TPM role</td>
+            <td>Upskilling, Placements, Community, Mocks, Resume</td>
+            <td style="color:var(--y);font-weight:700;white-space:nowrap">₹90K – 1L</td>
+          </tr>
+          <tr>
+            <td><span class="pill y">🟡 Yellow</span></td>
+            <td>3–5 yrs</td>
+            <td>27L and above</td>
+            <td>PM / APM / TPM role</td>
+            <td>Upskilling, Placements, Community, Mocks, Resume</td>
+            <td style="color:var(--y);font-weight:700;white-space:nowrap">₹90K – 1L</td>
+          </tr>
+          <tr>
+            <td><span class="pill y">🟡 Yellow</span></td>
+            <td>Any</td>
+            <td>Above 15L</td>
+            <td>Non-PM roles (any designation)</td>
+            <td>Upskilling, Placement & Referrals, Community, Mocks, Resume</td>
+            <td style="color:var(--y);font-weight:700;white-space:nowrap">₹90K – 1L</td>
+          </tr>
+          <tr>
+            <td><span class="pill y">🟡 Yellow</span></td>
+            <td>5–7 yrs</td>
+            <td>Below 20L</td>
+            <td>Any designation</td>
+            <td>Upskilling, Placement & Referrals, Community, Mocks, Resume</td>
+            <td style="color:var(--y);font-weight:700;white-space:nowrap">₹90K – 1L</td>
+          </tr>
+          <tr>
+            <td><span class="pill r">🔴 Red</span></td>
+            <td>Any</td>
+            <td>Above 25L</td>
+            <td>Non-PM roles only</td>
+            <td>Upskilling, Community, Mocks, Resume</td>
+            <td style="color:var(--r);font-weight:700;white-space:nowrap">₹75K – 90K</td>
+          </tr>
+          <tr>
+            <td><span class="pill r">🔴 Red</span></td>
+            <td>7–10 yrs</td>
+            <td>Above 15L</td>
+            <td>Any designation</td>
+            <td>Upskilling, Community, Mocks, Resume</td>
+            <td style="color:var(--r);font-weight:700;white-space:nowrap">₹75K – 90K</td>
+          </tr>
+          <tr>
+            <td><span class="pill r">🔴 Red</span></td>
+            <td>10+ yrs</td>
+            <td>Any</td>
+            <td>Any designation</td>
+            <td>Upskilling, Community, Mocks, Resume</td>
+            <td style="color:var(--r);font-weight:700;white-space:nowrap">₹75K – 90K</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-head">COLLEGE & COMPANY CONTEXT DEFINITIONS</div>
+      <div class="ctx-grid">
+        <div class="ctx-item"><h4>🎓 College Tier 1</h4><p>IITs, IIMs, NITs (top), BITS. Shown as context — no category impact.</p></div>
+        <div class="ctx-item"><h4>🎓 College Tier 2</h4><p>State engineering colleges, mid-tier MBA institutes. Context only.</p></div>
+        <div class="ctx-item"><h4>🎓 College Tier 3</h4><p>Other colleges. Designation + Exp/CTC still drive category.</p></div>
+        <div class="ctx-item"><h4>🏢 Product Tier 1</h4><p>FAANG, funded unicorns (Swiggy, Razorpay, CRED etc.). Context only.</p></div>
+        <div class="ctx-item"><h4>🏢 Product Tier 2</h4><p>Mid-stage startups, MNCs. Context only.</p></div>
+        <div class="ctx-item"><h4>🏢 Service Co.</h4><p>TCS/Infosys/Wipro (T1) or smaller IT firms (T2). Stronger upskilling signal.</p></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function setTab(name, el) {
+  document.querySelectorAll('.topbar-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  const a = document.getElementById('pane-assess');
+  const r = document.getElementById('pane-ref');
+  if (name === 'assess') {
+    a.style.display = 'grid';
+    r.style.display = 'none';
+  } else {
+    a.style.display = 'none';
+    r.style.display = 'flex';
+  }
+}
+
+function analyze() {
+  const exp = parseFloat(document.getElementById('exp').value);
+  const ctc = parseFloat(document.getElementById('ctc').value);
+  const designation = document.getElementById('designation').value;
+  const college = document.getElementById('collegeTier').value;
+  const company  = document.getElementById('companyType').value;
+
+  if (isNaN(exp) || isNaN(ctc) || !designation) {
+    alert('Please fill in Experience, CTC and Designation to continue.');
+    return;
+  }
+
+  // ── CATEGORY ──
+  const isPM = designation === 'pm_green';
+  let cat;
+
+  if (isPM) {
+    // PM rules — CTC ceilings define green vs yellow
+    if (ctc > 30)                               cat = 'yellow'; // PM, any exp, CTC >30 → yellow
+    else if (exp <= 3 && ctc >= 23)             cat = 'yellow'; // PM, 0-3 exp, CTC ≥23 → yellow
+    else if (exp <= 3 && ctc < 23)              cat = 'green';  // PM, 0-3 exp, CTC <23 → green
+    else if (exp > 3 && exp <= 5 && ctc >= 27)  cat = 'yellow'; // PM, 3-5 exp, CTC ≥27 → yellow
+    else if (exp > 3 && exp <= 5 && ctc < 27)   cat = 'green';  // PM, 3-5 exp, CTC <27 → green
+    // PM beyond 5 yrs — fall through to base rules
+    else if (exp > 5 && exp <= 7 && ctc < 20)   cat = 'yellow';
+    else if (exp > 7)                            cat = 'red';
+    else                                         cat = 'yellow';
+  } else {
+    // Non-PM rules
+    if      (ctc >= 25)                              cat = 'red';    // non-PM, CTC ≥25 → red
+    else if (ctc >= 15)                              cat = 'yellow'; // non-PM, CTC ≥15 → yellow
+    else if (exp <= 3  && ctc < 5)                  cat = 'green';
+    else if (exp <= 3  && ctc < 10)                 cat = 'green';
+    else if (exp > 3  && exp <= 5  && ctc < 10)     cat = 'green';
+    else if (exp > 3  && exp <= 5  && ctc < 15)     cat = 'yellow';
+    else if (exp > 5  && exp <= 7  && ctc < 20)     cat = 'yellow';
+    else if (exp > 7  && exp <= 10 && ctc > 15)     cat = 'red';
+    else if (exp > 10)                               cat = 'red';
+    else if (exp > 5  && exp <= 7  && ctc >= 20)    cat = 'red';
+    else if (exp > 3  && exp <= 5  && ctc >= 15)    cat = 'red';
+    else if (exp <= 3 && ctc >= 5)                  cat = 'yellow';
+    else                                             cat = 'yellow';
+    // Safety: non-PM can never be green
+    if (cat === 'green') cat = 'yellow';
+  }
+
+  // ── SCORE ──
+  let score = cat==='green'?55:cat==='yellow'?30:12;
+  score += isPM ? 25 : 10;
+  if (company === 'service1'||company === 'service2') score += 10;
+  else if (company === 'product2') score += 5;
+  score = Math.min(score, 100);
+
+  // ── STATIC DATA ──
+  const C = {
+    green:  { color:'var(--g)',  name:'🟢 Green Category',  pri:'HIGH PRIORITY' },
+    yellow: { color:'var(--y)', name:'🟡 Yellow Category', pri:'MEDIUM PRIORITY' },
+    red:    { color:'var(--r)',  name:'🔴 Red Category',    pri:'LOW PRIORITY' },
+  };
+
+  const verdict = {
+    green:  `Strong conversion candidate. Exp + CTC in optimal range${isPM?' and PM designation confirms Green status':''}. Pitch full suite at standard pricing — high placement ROI expected.`,
+    yellow: `Moderate fit.${!isPM?' Non-PM designation auto-assigned Yellow.':''} Exp or CTC needs nurturing. Use EMI, urgency, and outcome data to close.`,
+    red:    `Challenging placement profile. Senior exp or high CTC limits placement ROI. Focus on upskilling and career pivot — avoid hard placement guarantees.`,
+  };
+
+  const pricing = {
+    green:  { val:'₹1.10 L+',    sub:'High-conversion. Pitch at full price with confidence.' },
+    yellow: { val:'₹90K – 1L',   sub:'Use EMI or limited-time offers to close the deal.' },
+    red:    { val:'₹75K – 90K',  sub:'Minimum ₹75K. Lead with upskilling — skip placement guarantees.' },
+  };
+
+  const svcs = [
+    { id:'upskill',   e:'📚', n:'Upskilling Programs',          d:'Tech/domain skills to make them job-ready.' },
+    { id:'place',     e:'🏢', n:'Placement Support & Referrals', d:'Active job referrals, hiring partner connects, and placement drives.' },
+    { id:'community', e:'👥', n:'Community Access',              d:'Peer network, cohorts, and alumni groups.' },
+    { id:'mock',      e:'🎤', n:'Mock Interviews',               d:'Live mock rounds with industry mentors.' },
+    { id:'resume',    e:'📄', n:'Resume Building',               d:'ATS-optimised resume and LinkedIn revamp.' },
+  ];
+
+  const recMap = {
+    green:  { rec:['upskill','place','community','mock','resume'], cau:[],  skp:[] },
+    yellow: { rec:['upskill','place','community','mock','resume'], cau:[],  skp:[] },
+    red:    { rec:['upskill','community','mock','resume'],          cau:[],  skp:['place'] },
+  };
+
+  const tips = {
+    green: [
+      { t:'Lead with placement outcomes',   b:'Open with real batch stats: "X% placed at companies like Y and Z last batch." Numbers build immediate trust.' },
+      { t:'Use cohort seat scarcity',        b:'"Only 12 seats left in the upcoming batch." Scarcity drives action from high-intent leads — use it early.' },
+      { t:'Offer a free mock interview',     b:'A free trial round shows value before asking for money. Especially powerful for PM profiles.' },
+      { t:'Highlight the community\'s long-term value', b:'The alumni network, peer cohort, and industry connections outlast the program itself — this is a career-long asset, not just a course.' },
+      { t:'Set a 48-hour decision window',   b:'"I\'ve held this slot for you until Thursday." Gentle urgency without pressure.' },
+    ],
+    yellow: [
+      { t:'Start with the skill gap',        b:'"What\'s stopping you from a PM role right now?" Let them identify the problem — then offer the solution.' },
+      { t:'Break the fee into EMI',           b:'Present ₹8K/month instead of ₹90K upfront. Dramatically reduces psychological resistance.' },
+      { t:'Offer a 48-hour discount',         b:'10–15% time-bound discount creates urgency without devaluing the product.' },
+      { t:'Sell the community as a career asset', b:'Emphasise that the peer network, mentors, and alumni connections keep delivering value long after the program ends — it\'s an ongoing advantage, not a one-time course.' },
+      { t:'Follow up with testimonials fast', b:'If they don\'t close, send 2–3 short video testimonials of similar profiles within 1 hour.' },
+    ],
+    red: [
+      { t:'Lead with learning, not placements', b:'"This will sharpen your product thinking" works better than job guarantees for senior profiles.' },
+      { t:'Frame as a strategic pivot',          b:'"Most senior folks use this for CPO, consulting, or startup advisory roles."' },
+      { t:'Offer upskill-only entry first',      b:'Lower-commitment entry is easier to close. Upsell placements later after trust is built.' },
+      { t:'Lead with community value',           b:'Position the alumni network and peer cohort as the real ROI — senior professionals gain more from high-quality connections and knowledge sharing than from job placements.' },
+      { t:'Set expectations early',              b:'"We help with skill-building and connections — placement depends on effort and market fit." Trust > hype.' },
+    ],
+  };
+
+  const opener = {
+    green:  `"Hey [Name], I looked at your profile — ${exp} years in ${isPM?'product':'tech'} at ₹${ctc}L is exactly what our placement partners look for. We placed 3 similar profiles last month. Got 10 minutes?"`,
+    yellow: `"Hi [Name], you're at an interesting inflection point — ₹${ctc}L CTC right now, and our program has helped similar profiles jump to 20L+ in 6–9 months. Want to see how that math works?"`,
+    red:    `"Hi [Name], with ${exp}+ years of experience you're perfectly positioned for a real strategic move — CPO track, startup, or consulting pivot. Let me show you what our senior cohort looks like."`,
+  };
+
+  const dodonts = {
+    green:  { dos:['Pitch the full suite confidently','Quote full pricing upfront','Highlight batch placement stats','Drive to quick close — high-intent profile'], donts:['Offer discounts unless asked','Over-explain — keep the pitch sharp','Miss the urgency window','Skip college/company context in small talk'] },
+    yellow: { dos:['Lead with ROI and CTC jump data','Offer EMI options proactively','Follow up within 1 hour post-call','Use social proof from similar profiles'], donts:['Lead with the price tag','Guarantee placement outright','Let the lead go cold > 24 hours','Pitch heavy on placement for non-PM roles'] },
+    red:    { dos:['Lead with skill-building value','Offer upskill-only entry first','Probe for career pain before pitching','Frame as a strategic senior move'], donts:['Promise placement outcomes','Quote full pricing on first call','Push hard if interest is low','Ignore limited placement ROI here'] },
+  };
+
+  // ── RENDER ──
+  document.getElementById('catBanner').className = `cat-banner ${cat}`;
+  document.getElementById('catName').textContent = C[cat].name;
+  document.getElementById('catPriority').textContent = C[cat].pri;
+  document.getElementById('catVerdict').textContent = verdict[cat];
+
+  const chips = [];
+  chips.push({ l: isPM ? '💼 PM Role' : '💼 Non-PM', cls: isPM ? 'pos' : 'neg' });
+  chips.push({ l: `⏱ ${exp}y exp`, cls: exp<=3?'pos':exp<=7?'neu':'neg' });
+  chips.push({ l: `💰 ₹${ctc}L CTC`, cls: ctc<10?'pos':ctc<20?'neu':'neg' });
+  if (college) { const m={'1':'T1','2':'T2','3':'T3'}; chips.push({ l:`🎓 College ${m[college]}`, cls:'ctx' }); }
+  if (company) { const m={product1:'Product T1',product2:'Product T2',service1:'Service T1',service2:'Service T2'}; chips.push({ l:`🏢 ${m[company]}`, cls:'ctx' }); }
+  document.getElementById('chipRow').innerHTML = chips.map(c=>`<span class="chip ${c.cls}">${c.l}</span>`).join('');
+
+  const dSel = document.getElementById('designation');
+  const dText = dSel.options[dSel.selectedIndex].text;
+  document.getElementById('sExp').textContent = `${exp} yr${exp!==1?'s':''}`;
+  document.getElementById('sExpSub').textContent = exp<=3?'Early career':exp<=7?'Mid-level':'Senior';
+  document.getElementById('sCtc').textContent = `₹${ctc} LPA`;
+  document.getElementById('sCtcSub').textContent = ctc<10?'Below median':ctc<20?'Market median':'Above median';
+  document.getElementById('sDesig').textContent = dText.length>22 ? dText.substring(0,22)+'…' : dText;
+  document.getElementById('sDesigSub').textContent = isPM ? 'Green-eligible ✓' : 'Assigned → Yellow';
+
+  document.getElementById('scoreNum').textContent = `${score}/100`;
+  document.getElementById('scoreNum').style.color = C[cat].color;
+  const bar = document.getElementById('scoreBar');
+  bar.style.width = '0%';
+  bar.style.background = `linear-gradient(90deg, ${C[cat].color}50, ${C[cat].color})`;
+  setTimeout(() => { bar.style.width = score + '%'; }, 80);
+
+  document.getElementById('priceVal').textContent = pricing[cat].val;
+  document.getElementById('priceVal').style.color = C[cat].color;
+  document.getElementById('priceSub').textContent = pricing[cat].sub;
+
+  const { rec, cau } = recMap[cat];
+  document.getElementById('serviceList').innerHTML = svcs.map(s => {
+    const t = rec.includes(s.id)?'rec':cau.includes(s.id)?'cau':'skip';
+    const b = t==='rec'?'PITCH':t==='cau'?'OPTIONAL':'SKIP';
+    return `<div class="svc-row"><div class="svc-emoji">${s.e}</div><div class="svc-info"><strong>${s.n}</strong><span>${s.d}</span></div><div class="svc-badge ${t}">${b}</div></div>`;
+  }).join('');
+
+
+
+  document.getElementById('tipsList').innerHTML = tips[cat].map((tip,i)=>`
+    <div class="tip-row">
+      <div class="tip-num ${cat}">${i+1}</div>
+      <div><strong>${tip.t}</strong><p>${tip.b}</p></div>
+    </div>`).join('');
+
+  const dd = dodonts[cat];
+  document.getElementById('doDont').innerHTML = `
+    <div class="dd-do">
+      <div class="dd-col-head">✓ DO</div>
+      ${dd.dos.map(d=>`<div class="dd-item">${d}</div>`).join('')}
+    </div>
+    <div class="dd-dont">
+      <div class="dd-col-head">✕ DON'T</div>
+      ${dd.donts.map(d=>`<div class="dd-item">${d}</div>`).join('')}
+    </div>`;
+
+  const ibg = { green:'rgba(15,255,163,0.1)', yellow:'rgba(255,209,102,0.1)', red:'rgba(255,107,138,0.1)' };
+  document.getElementById('svcIcon').style.background = ibg[cat];
+  document.getElementById('tipsIcon').style.background = ibg[cat];
+
+  document.getElementById('emptyState').style.display = 'none';
+  const rw = document.getElementById('resultsWrap');
+  rw.classList.remove('show');
+  void rw.offsetWidth;
+  rw.classList.add('show');
+  rw.parentElement.scrollTop = 0;
+}
+
+function resetForm() {
+  ['exp','ctc','designation','collegeTier','companyType'].forEach(id => {
+    const el = document.getElementById(id);
+    el.tagName === 'INPUT' ? (el.value='') : (el.selectedIndex=0);
+  });
+  document.getElementById('emptyState').style.display = 'flex';
+  document.getElementById('resultsWrap').classList.remove('show');
+}
+</script>
+</body>
+</html>
